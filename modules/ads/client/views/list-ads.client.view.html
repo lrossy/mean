@@ -1,0 +1,20 @@
+<section ng-controller="AdsController" ng-init="find()">
+  <div class="page-header">
+    <h1>Ads</h1>
+  </div>
+  <div class="list-group">
+    <a ng-repeat="ad in ads" ui-sref="ads.view({adId: ad._id})" class="list-group-item">
+      <small class="list-group-item-text">
+        Posted on
+        <span ng-bind="ad.created | date:'mediumDate'"></span>
+        by
+        <span ng-bind="ad.user.displayName"></span>
+      </small>
+      <h4 class="list-group-item-heading" ng-bind="ad.title"></h4>
+      <p class="list-group-item-text" ng-bind="ad.content"></p>
+    </a>
+  </div>
+  <div class="alert alert-warning text-center" ng-if="ads.$resolved && !ads.length">
+    No ads yet, why don't you <a ui-sref="ads.create">create one</a>?
+  </div>
+</section>
